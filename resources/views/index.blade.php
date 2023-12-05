@@ -1,21 +1,9 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fanwiki</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-</head>
-<body>
-<div class="header">
-    <h1>Index článkov</h1>
-</div>
+@extends("layouts.app")
 
-<div class="topnav">
-    <a href="homepage.html">Fanwiki</a>
-    <a class = "active" href="index.html">Index</a>
-    <a href="addarticle.html">Pridať</a>
-</div>
+@section("title", "Cibuľa")
+
+@section("content")
+
 <div class = row>
     <div class="tabulka" style="overflow-x:auto;">
         <table>
@@ -36,5 +24,5 @@
 <div class = footer>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 </div>
-</body>
-</html>
+
+@endsection
