@@ -1,10 +1,10 @@
 @extends("layouts.app")
 
-@section("title", "Cibuľa")
+@section("title", "Stiahnutia")
 
 @section("content")
 
-<div class = row>
+<div class = "row">
     <div class="tabulka" style="overflow-x:auto;">
         <table>
             <tr>
@@ -21,7 +21,7 @@
     </div>
 </div>
 
-<div class = footer>
+<div class = "footer">
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 </div>
 

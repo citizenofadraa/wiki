@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::view('/article{id}', 'article');
+Route::view('/chat', 'chat');
+Route::view('/index', 'index');
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -20,5 +24,7 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::post('/chat', [\App\Http\Controllers\LaravelCRUD::class, 'addPost'])->name('newpost');
 
 require __DIR__.'/auth.php';

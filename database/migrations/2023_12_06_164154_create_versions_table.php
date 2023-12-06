@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVersionTable extends Migration
+class CreateVersionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateVersionTable extends Migration
      */
     public function up()
     {
-        Schema::create('version', function (Blueprint $table) {
+        Schema::create('versions', function (Blueprint $table) {
             $table->id();
             $table->string('verzia');
             $table->string('link');
             $table->date('datum');
+            $table->timestamps();
         });
     }
 
@@ -28,6 +29,6 @@ class CreateVersionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('version');
+        Schema::dropIfExists('versions');
     }
 }
