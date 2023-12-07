@@ -25,6 +25,13 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/chat', [\App\Http\Controllers\LaravelCRUD::class, 'showComments']);
+Route::get('/index', [\App\Http\Controllers\LaravelCRUD::class, 'showVersions']);
+Route::get('deleteVersion/{id}', [\App\Http\Controllers\LaravelCRUD::class, 'deleteVersion']);
+Route::get('editVersion/{id}', [\App\Http\Controllers\LaravelCRUD::class, 'editVersion']);
+
 Route::post('/chat', [\App\Http\Controllers\LaravelCRUD::class, 'addPost'])->name('newpost');
+Route::post('/index', [\App\Http\Controllers\LaravelCRUD::class, 'indexAction'])->name('index.action');
+Route::post('updateVersion', [\App\Http\Controllers\LaravelCRUD::class, 'updateVersion'])->name('updateVersion');
 
 require __DIR__.'/auth.php';

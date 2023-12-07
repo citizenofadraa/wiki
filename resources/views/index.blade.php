@@ -4,22 +4,24 @@
 
 @section("content")
 
-<div class = "row">
-    <div class="tabulka" style="overflow-x:auto;">
-        <table>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Verzia</th>
+            <th>Link</th>
+            <th></th>
+            <th></th>
+        </tr>
+        @foreach ($versions as $item)
             <tr>
-                <th>Názov</th>
-                <th>Kategória</th>
-                <th>Link</th>
+                <td>{{$item->id}}</td>
+                <td>{{$item->verzia}}</td>
+                <td><a href="{{$item->link}}">Link na stiahnutie</a></td>
+                <td><a href=editVersion/{{$item->id}}>Upraviť</a></td>
+                <td><a href=deleteVersion/{{$item->id}}>Zmazať</a></td>
             </tr>
-            <tr>
-                <td>Článok 1</td>
-                <td>Kategória 1</td>
-                <td><a href="article.html">Link</a></td>
-            </tr>
-        </table>
-    </div>
-</div>
+        @endforeach
+    </table>
 
 <div class = "footer">
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>

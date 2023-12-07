@@ -57,6 +57,20 @@ form {
     text-align: left;
 }
 
+.formdiv {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+.form-group {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
 th, td {
     text-align: center;
     padding: 10px;
@@ -174,4 +188,6 @@ li a:hover {
 .row {
     width: 100%;
     padding: 15px;
+    display: block;
+    text-align: center;
 }

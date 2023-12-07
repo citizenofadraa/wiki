@@ -21,6 +21,16 @@
         </form>
     </div>
 
+    <table>
+        @foreach ($posts as $item)
+            <tr>
+                <td><b>Používateľ:</b> {{$item->pouzivatel}}<br>
+                    <b>Komentár:</b> {{$item->text}}<br>
+                </td>
+            </tr>
+        @endforeach
+    </table>
+
     <script>
 
         function validateAuthor() {
