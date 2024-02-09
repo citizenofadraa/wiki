@@ -5,11 +5,11 @@
 @section("content")
 
     <div class="row">
-        <form name="inputForm" action="{{route('newpost')}}" method="post" onsubmit="return (validateAuthor() & validateText())" id="form">
+        <form name="inputForm" action="{{route('newpost')}}" method="post" onsubmit="return (validateText())" id="form">
             @csrf
             <div class="formdiv">
                 <label>Používateľské meno</label><br>
-                <input name="pouzivatel" type="text" class="form-control"><br>
+                <input name="pouzivatel" type="text" class="form-control" value="{{Auth::user()->name}}"><br>
                 <label>Text</label><br>
                 <textarea name="text" class="form-control"></textarea><br>
             </div>
@@ -32,14 +32,6 @@
     </table>
 
     <script>
-
-        function validateAuthor() {
-            let x = document.forms["inputForm"]["pouzivatel"].value;
-            if (x === "") {
-                alert("Autor musí byť vyplnený");
-                return false;
-            }
-        }
 
         function validateText() {
             let x = document.forms["inputForm"]["text"].value;

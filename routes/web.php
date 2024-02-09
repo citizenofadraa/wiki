@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::view('/article{id}', 'article');
 Route::view('/chat', 'chat');
 Route::view('/index', 'index');
+Route::view('/forum', 'forum');
 
 Route::get('/', function () {
     return view('welcome');
