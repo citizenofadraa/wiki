@@ -10,10 +10,10 @@
                 <td>{{$item->idAutora}}</td>
                 <td>{{$item->nazov}}</td>
                 <td><a href="chat/{{$item->id}}">Read</a></td>
+                <td><a href="deleteForum/{{$item->id}}">Delete</a></td>
             </tr>
         @endforeach
     </table>
-
 
     <div class="formdiv">
         <form name="inputForm" action="{{route('newForum')}}" method="post" id="form">

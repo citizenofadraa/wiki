@@ -15,14 +15,13 @@ class LaravelCRUD
 {
 
     function showPosts($id){
-        $row = DB::table('posts')
+        $posts = DB::table('posts')
             ->where('idFora', $id)
-            ->first();
-        $data = [
-            'Info' => $row,
-        ];
+            ->get();
 
-        return view('edit', $data);
+        //return response()->json(array('task' => $posts));
+
+        return view('chat', ['posts' => $posts]);
     }
 
     function addPost(Request $request){
@@ -30,17 +29,19 @@ class LaravelCRUD
         $request->validate([
             'pouzivatel'=>'required',
             'text'=>'required',
+            'idFora'=>'required'
         ]);
 
         $post = new Posts();
         $post->pouzivatel = $request->input('pouzivatel');
         $post->text = $request->input('text');
+        $post->idFora = $request->input('idFora');
 
         //return response()->json(array('task' => $article));
 
         $post->save();
 
-        return redirect('chat');
+        return redirect('chat'/$request->input('idFora'));
     }
 
     function addForum(Request $request){
@@ -100,6 +101,20 @@ class LaravelCRUD
             ->where('id', $id)
             ->delete();
         return redirect('index');
+    }
+
+    function deleteForum($id) {
+        $delete = DB::table('forums')
+            ->where('id', $id)
+            ->delete();
+        return redirect('forum');
+    }
+
+    function deletePost($id) {
+        $delete = DB::table('posts')
+            ->where('id', $id)
+            ->delete();
+        return redirect('welcome');
     }
 
     function editVersion($id){

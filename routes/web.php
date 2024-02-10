@@ -26,10 +26,12 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/chat', [\App\Http\Controllers\LaravelCRUD::class, 'showComments']);
+Route::get('/chat/{id}', [\App\Http\Controllers\LaravelCRUD::class, 'showPosts']);
 Route::get('/index', [\App\Http\Controllers\LaravelCRUD::class, 'showVersions']);
 Route::get('/forum', [\App\Http\Controllers\LaravelCRUD::class, 'showForum']);
 Route::get('deleteVersion/{id}', [\App\Http\Controllers\LaravelCRUD::class, 'deleteVersion']);
+Route::get('deleteForum/{id}', [\App\Http\Controllers\LaravelCRUD::class, 'deleteForum']);
+Route::get('deletePost/{id}', [\App\Http\Controllers\LaravelCRUD::class, 'deletePost']);
 Route::get('editVersion/{id}', [\App\Http\Controllers\LaravelCRUD::class, 'editVersion']);
 
 Route::post('/chat', [\App\Http\Controllers\LaravelCRUD::class, 'addPost'])->name('newpost');

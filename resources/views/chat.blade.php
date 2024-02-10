@@ -10,6 +10,7 @@
             <div class="formdiv">
                 <label>Používateľské meno</label><br>
                 <input name="pouzivatel" type="text" class="form-control" value="{{Auth::user()->name}}" readonly><br>
+                <input name="idFora" type="number" class="form-control" value="{{request('id')}}" readonly><br>
                 <label>Text</label><br>
                 <textarea name="text" class="form-control"></textarea><br>
             </div>
@@ -22,13 +23,18 @@
     </div>
 
     <table>
-        @foreach ($posts as $item)
+        @forelse ($posts as $item)
             <tr>
                 <td><b>Používateľ:</b> {{$item->pouzivatel}}<br>
                     <b>Komentár:</b> {{$item->text}}<br>
                 </td>
+                <td><a href="deletePost/{{$item->id}}">Delete</a></td>
             </tr>
-        @endforeach
+        @empty
+            <tr>
+                <td>No posts found for this forum</td>
+            </tr>
+        @endforelse
     </table>
 
     <script>
