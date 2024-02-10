@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Forum extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = 'id';
+
     protected $fillable = [
         'idAutora',
         'nazov',

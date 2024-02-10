@@ -10,19 +10,19 @@ use App\Models\Posts;
 use App\Models\User;
 use App\Models\Version;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class LaravelCRUD
 {
 
     function showPosts($id){
-        $row = DB::table('posts')
+        $posts = DB::table('posts')
             ->where('idFora', $id)
-            ->first();
-        $data = [
-            'Info' => $row,
-        ];
+            ->get();
 
-        return view('edit', $data);
+        //return response()->json(array('task' => $posts));
+
+        return view('chat', ['posts' => $posts]);
     }
 
     function addPost(Request $request){
@@ -30,17 +30,19 @@ class LaravelCRUD
         $request->validate([
             'pouzivatel'=>'required',
             'text'=>'required',
+            'idFora'=>'required'
         ]);
 
         $post = new Posts();
         $post->pouzivatel = $request->input('pouzivatel');
         $post->text = $request->input('text');
+        $post->idFora = $request->input('idFora');
 
         //return response()->json(array('task' => $article));
 
         $post->save();
 
-        return redirect('chat');
+        return redirect('/chat/'.$post->idFora);
     }
 
     function addForum(Request $request){
@@ -61,6 +63,22 @@ class LaravelCRUD
         return redirect('forum');
     }
 
+    function addVersion(Request $request){
+
+        $version = new Version();
+        $version->verzia = $request->input('verzia');
+        $version->link = $request->input('link');
+        $vstup = $request->input('datum');
+        $date = Carbon::parse($vstup);
+        $version->datum = $date->format('y/m/d');
+
+        //return response()->json(array('task' => $version));
+
+        $version->save();
+
+        return redirect('index');
+    }
+
     function showComments() {
         $post = DB::table('posts')->get();
 
@@ -79,27 +97,25 @@ class LaravelCRUD
         return view('index', ['versions' => $version]);
     }
 
-    function indexAction(Request $request)
-    {
-        //return response()->json(array('task' => $request));
-
-        if ($request->ajax()) {
-            $updating = DB::table('versions')
-                ->where('id', $request->pk)
-                ->update([
-                    'text'=>$request->value
-                ]);
-
-            return response()->json(['success' => true]);
-        }
-        else return response('wrong');
-    }
-
     function deleteVersion($id) {
         $delete = DB::table('versions')
             ->where('id', $id)
             ->delete();
         return redirect('index');
+    }
+
+    function deleteForum($id) {
+        $delete = DB::table('forums')
+            ->where('id', $id)
+            ->delete();
+        return redirect(url('/forum/'));
+    }
+
+    function deletePost($id) {
+        $delete = DB::table('posts')
+            ->where('id', $id)
+            ->delete();
+        return redirect(url('/forum/'));
     }
 
     function editVersion($id){
@@ -125,7 +141,14 @@ class LaravelCRUD
                 'verzia'=>$request->input('verzia'),
                 'link'=>$request->input('link')
             ]);
-        return redirect('/');
+        return redirect('index');
        }
 
+    function updateForums(Request $request, $id)
+    {
+        $forum = Forum::findorfail($id);
+        $forum->update($request->all());
+
+        return response()->json(['message' => 'Item updated successfully']);
+    }
 }
