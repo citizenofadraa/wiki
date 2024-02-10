@@ -179,3 +179,16 @@ li a:hover {
     width: 100%;
     padding: 15px;
 }
+
+#banan, #banan2 {
+    display: block;
+    background: none;
+    border: none;
+    outline: none;
+    color: white;
+    font-family: "Arial Black", Helvetica, sans-serif;
+    font-size: 16px;
+    padding: 14px 16px;
+    text-decoration: none;
+    float: right;
+}

@@ -28,10 +28,12 @@ Route::get('/dashboard', function () {
 
 Route::get('/chat', [\App\Http\Controllers\LaravelCRUD::class, 'showComments']);
 Route::get('/index', [\App\Http\Controllers\LaravelCRUD::class, 'showVersions']);
+Route::get('/forum', [\App\Http\Controllers\LaravelCRUD::class, 'showForum']);
 Route::get('deleteVersion/{id}', [\App\Http\Controllers\LaravelCRUD::class, 'deleteVersion']);
 Route::get('editVersion/{id}', [\App\Http\Controllers\LaravelCRUD::class, 'editVersion']);
 
 Route::post('/chat', [\App\Http\Controllers\LaravelCRUD::class, 'addPost'])->name('newpost');
+Route::post('/forum', [\App\Http\Controllers\LaravelCRUD::class, 'addForum'])->name('newForum');
 Route::post('/index', [\App\Http\Controllers\LaravelCRUD::class, 'indexAction'])->name('index.action');
 Route::post('updateVersion', [\App\Http\Controllers\LaravelCRUD::class, 'updateVersion'])->name('updateVersion');
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Forum;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\Article;
@@ -12,6 +13,17 @@ use Illuminate\Http\Request;
 
 class LaravelCRUD
 {
+
+    function showPosts($id){
+        $row = DB::table('posts')
+            ->where('idFora', $id)
+            ->first();
+        $data = [
+            'Info' => $row,
+        ];
+
+        return view('edit', $data);
+    }
 
     function addPost(Request $request){
 
@@ -31,10 +43,34 @@ class LaravelCRUD
         return redirect('chat');
     }
 
+    function addForum(Request $request){
+
+        $request->validate([
+            'idAutora'=>'required',
+            'nazov'=>'required',
+        ]);
+
+        $forum = new Forum();
+        $forum->idAutora = $request->input('idAutora');
+        $forum->nazov = $request->input('nazov');
+
+        //return response()->json(array('task' => $forum));
+
+        $forum->save();
+
+        return redirect('forum');
+    }
+
     function showComments() {
         $post = DB::table('posts')->get();
 
         return view('chat', ['posts' => $post]);
+    }
+
+    function showForum() {
+        $forum = DB::table('forums')->get();
+
+        return view('forum', ['forums' => $forum]);
     }
 
     function showVersions() {

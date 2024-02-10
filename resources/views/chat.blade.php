@@ -9,7 +9,7 @@
             @csrf
             <div class="formdiv">
                 <label>Používateľské meno</label><br>
-                <input name="pouzivatel" type="text" class="form-control" value="{{Auth::user()->name}}"><br>
+                <input name="pouzivatel" type="text" class="form-control" value="{{Auth::user()->name}}" readonly><br>
                 <label>Text</label><br>
                 <textarea name="text" class="form-control"></textarea><br>
             </div>

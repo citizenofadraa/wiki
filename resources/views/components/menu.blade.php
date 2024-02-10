@@ -1,7 +1,9 @@
 <div class="topnav">
     <a href="/">Hlavná stránka</a>
     <a href="index">Stiahnutia</a>
+@auth
     <a href="forum">Fórum</a>
+@endauth
 @guest
     <a href="login" style="float:right">Login</a>
     <a href="register" style="float:right">Register</a>
