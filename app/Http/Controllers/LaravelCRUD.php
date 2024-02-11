@@ -42,7 +42,7 @@ class LaravelCRUD
 
         $post->save();
 
-        return redirect('/chat/'.$post->idFora);
+        return redirect('/chat/'.$post->idFora)->with('success', 'Data has been successfully stored');
     }
 
     function addForum(Request $request){
@@ -60,10 +60,16 @@ class LaravelCRUD
 
         $forum->save();
 
-        return redirect('forum');
+        return redirect('forum')->with('success', 'Data has been successfully stored');
     }
 
     function addVersion(Request $request){
+
+        $request -> validate([
+            'verzia' => 'required',
+            'link' => 'required',
+            'datum' => 'required'
+            ]);
 
         $version = new Version();
         $version->verzia = $request->input('verzia');
@@ -76,7 +82,7 @@ class LaravelCRUD
 
         $version->save();
 
-        return redirect('index');
+        return redirect('index')->with('success', 'Data has been successfully stored');
     }
 
     function showComments() {
@@ -146,6 +152,10 @@ class LaravelCRUD
 
     function updateForums(Request $request, $id)
     {
+        $request->validate([
+            'nazov'=>'required'
+        ]);
+
         $forum = Forum::findorfail($id);
         $forum->update($request->all());
 

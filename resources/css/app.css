@@ -192,3 +192,11 @@ li a:hover {
     text-decoration: none;
     float: right;
 }
+
+.logoutForm {
+    overflow: hidden;
+}
+
+.right {
+    float: right;
+}

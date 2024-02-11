@@ -4,6 +4,15 @@
 
 @section("content")
 
+    <table id="postsTable">
+        <thead>
+
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
     <table>
         @forelse ($posts as $item)
             <tr>
@@ -19,7 +28,18 @@
         @endforelse
     </table>
 
-    <div class="row">
+
+    @if ($errors->any())
+        <div>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <div class="formdiv">
         <form name="inputForm" action="{{route('newpost')}}" method="post" onsubmit="return (validateText())" id="form">
             @csrf
             <div class="formdiv">
@@ -46,5 +66,8 @@
             }
         }
     </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('js/loading.js') }}"></script>
 
 @endsection

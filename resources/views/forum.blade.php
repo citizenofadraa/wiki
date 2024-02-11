@@ -4,7 +4,9 @@
 
 @section("content")
 
-    <a href="{{url('/forumAdd/')}}">Pridaj nové vlákno</a>
+    <div class="formdiv">
+        <a href="{{url('/forumAdd/')}}">Pridaj nové vlákno</a>
+    </div>
 
     <table>
         @foreach ($forums as $item)

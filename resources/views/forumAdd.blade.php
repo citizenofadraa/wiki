@@ -5,7 +5,7 @@
 @section("content")
 
     <div class="formdiv">
-        <form name="inputForm" action="{{route('newForum')}}" method="post" id="form">
+        <form name="inputForm" action="{{route('newForum')}}" onsubmit="return (validateText())" method="post" id="form">
             @csrf
             <div class="formdiv">
                 <label>Používateľské meno</label><br>
@@ -20,6 +20,17 @@
 
         </form>
     </div>
+
+    <script>
+
+        function validateText() {
+            let x = document.forms["inputForm"]["nazov"].value;
+            if (x === "") {
+                alert("Text musí byť vyplnený");
+                return false;
+            }
+        }
+    </script>
 
     <div class = footer>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>

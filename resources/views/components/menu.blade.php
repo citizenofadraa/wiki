@@ -10,8 +10,7 @@
 @endguest
     <div class="logoutForm">
         <form method="POST" action="{{ route('logout') }}">
-            @csrf @auth<button id="banan" type="submit">Logout</button>
-            <a style="float:right" href="update">{{Auth::user()->name}}</a>@endauth
+            @csrf @auth<button id="banan" type="submit" class="right">Logout</button> @endauth
         </form>
 </div>
 </div>
